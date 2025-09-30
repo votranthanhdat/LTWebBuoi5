@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TLWebBuoi05_Bai3.Models.SanPham>
+
+@{
+    ViewBag.Title = "Kết Quả Tìm Kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kết Quả Tìm Kiếm</h2>
+
+<form method="get" action="@Url.Action("TimKiemSanPhamTheoChu", "Home")">
+    <input type="text" name="TenSP" placeholder="Nhập tên sản phẩm..." value="@Request["TenSP"]" />
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Mã Sản Phẩm</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Hình Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Mô Tả</th>
+            <th>Mã Loại</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSp</td>
+                <td><img src="@Url.Content("~/Content/Images/" + item.DuongDan)" width="80" height="50" /></td>
+                <td>@item.Gia VND</td>
+                <td>@item.Mota</td>
+                <td>@item.MaLoai</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p style="color:red;">Không tìm thấy sản phẩm nào phù hợp.</p>
+}

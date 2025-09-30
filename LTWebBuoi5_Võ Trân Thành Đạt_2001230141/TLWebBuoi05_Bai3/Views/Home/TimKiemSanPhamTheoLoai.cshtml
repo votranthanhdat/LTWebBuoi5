@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TLWebBuoi05_Bai3.Models.SanPham>
+
+@{
+    ViewBag.Title = "TimKiemSanPhamTheoLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h>TimKiemSanPhamTheoLoai</h>
+<form method="get" action="@Url.Action("TimKiemSanPhamTheoLoai", "Home")">
+    <label>Chọn loại:</label>
+    <select name="MaLoai">
+        <option value=""> Tất cả </option>
+        @foreach (var loai in (List<TLWebBuoi05_Bai3.Models.Loai>)ViewBag.DsLoai)
+        {
+            <option value="@loai.MaLoai" @(Request["MaLoai"] == loai.MaLoai ? "selected" : "")>
+                @loai.TenLoai
+            </option>
+        }
+    </select>
+    <button type="submit">Lọc</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Mã SP</th>
+            <th>Tên SP</th>
+            <th>Hình</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Mã loại</th>
+        </tr>
+        @foreach (var sp in Model)
+        {
+            <tr>
+                <td>@sp.MaSP</td>
+                <td>@sp.TenSp</td>
+                <td><img src="@Url.Content("~/Content/Images/" + sp.DuongDan)" width="80" height="50" /></td>
+                <td>@sp.Gia VND</td>
+                <td>@sp.Mota</td>
+                <td>@sp.MaLoai</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p style="color:red;">Không có sản phẩm nào trong loại này.</p>
+}

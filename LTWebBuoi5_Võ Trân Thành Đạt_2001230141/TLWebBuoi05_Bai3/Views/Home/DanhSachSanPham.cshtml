@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TLWebBuoi05_Bai3.Models.SanPham>
+
+@{
+    ViewBag.Title = "DanhSachSanPham";
+}
+
+<h2>DanhSachSanPham</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Mã Sản Phẫm
+        </th>
+        <th>
+           Tên Sản Phẩm
+        </th>
+        <th>
+           Đường Dẫn
+        </th>
+        <th>
+            Giá 
+        </th>
+        <th>
+           Mô Tả
+        </th>
+        <th>
+            Mã Loại
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuongDan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoai)
+        </td>
+        
+    </tr>
+}
+
+</table>

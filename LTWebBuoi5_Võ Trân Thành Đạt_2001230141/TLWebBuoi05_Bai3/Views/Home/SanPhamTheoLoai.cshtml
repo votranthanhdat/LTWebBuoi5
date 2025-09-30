@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TLWebBuoi05_Bai3.Models.SanPham>
+
+@{
+    var dsLoai = ViewBag.DSLoai as List<TLWebBuoi05_Bai3.Models.Loai>;
+}
+
+
+<div style="display:flex">
+
+    <div style="width:200px; border-right:1px solid gray; padding-right:10px;">
+        <h3>Loại Sản Phẩm </h3>
+        <ul>
+           
+            @foreach (var loai in dsLoai)
+            {
+                <li>
+
+                    <a href="@Url.Action("SanPhamTheoLoai", "Home", new { maLoai = loai.MaLoai })">
+                        @loai.TenLoai
+                    </a>
+               </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+<div style="flex:1; padding-left:20px;">
+    <h3>Danh sách sản phẩm</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Mã SP</th>
+            <th>Tên SP</th>
+            <th>Đường dẫn</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+        </tr>
+        @foreach (var sp in Model)
+        {
+            <tr>
+                <td>@sp.MaSP</td>
+                <td>@sp.TenSp</td>
+                <td>
+                    <img src="@Url.Content("~/Content/Images/" + @sp.DuongDan)" width="80" height="50" />
+                </td>
+                <td>@sp.Gia</td>
+                <td>@sp.Mota</td>
+            </tr>
+        }
+    </table>
+</div>
+
